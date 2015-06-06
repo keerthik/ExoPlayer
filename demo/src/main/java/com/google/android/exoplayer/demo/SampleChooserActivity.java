@@ -50,6 +50,8 @@ public class SampleChooserActivity extends Activity {
     ListView sampleList = (ListView) findViewById(R.id.sample_list);
     final SampleAdapter sampleAdapter = new SampleAdapter(this);
 
+    sampleAdapter.add(new Header("BitgGym"));
+    sampleAdapter.addAll((Object[]) Samples.BITGYM_60FPS_HLS);
     sampleAdapter.add(new Header("YouTube DASH"));
     sampleAdapter.addAll((Object[]) Samples.YOUTUBE_DASH_MP4);
     sampleAdapter.add(new Header("Widevine GTS DASH"));

@@ -26,7 +26,7 @@ import android.widget.TextView;
  * A {@link TrackRenderer} that periodically updates debugging information displayed by a
  * {@link TextView}.
  */
-/* package */ class DebugTrackRenderer extends TrackRenderer implements Runnable {
+public class DebugTrackRenderer extends TrackRenderer implements Runnable {
 
   private final TextView textView;
   private final DemoPlayer player;

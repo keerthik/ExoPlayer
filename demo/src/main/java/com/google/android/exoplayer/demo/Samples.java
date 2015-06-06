@@ -42,6 +42,12 @@ import java.util.Locale;
 
   }
 
+  public static final Sample[] BITGYM_60FPS_HLS = new Sample[] {
+	  new Sample("BitGym 60 FPS",
+		"http://bgstreaming.s3.amazonaws.com/v4-content/providers/virtual-active/ATBKPK0303/hls/adaptive.m3u8",
+		DemoUtil.TYPE_HLS),
+  };
+  
   public static final Sample[] YOUTUBE_DASH_MP4 = new Sample[] {
     new Sample("Google Glass",
         "http://www.youtube.com/api/manifest/dash/id/bf5bb2419360daf1/source/youtube?"

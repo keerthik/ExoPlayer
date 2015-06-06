@@ -15,6 +15,16 @@
  */
 package com.google.android.exoplayer.demo.player;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import android.media.MediaCodec.CryptoException;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.view.Surface;
+
 import com.google.android.exoplayer.DummyTrackRenderer;
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
@@ -32,15 +42,6 @@ import com.google.android.exoplayer.metadata.MetadataTrackRenderer;
 import com.google.android.exoplayer.text.TextRenderer;
 import com.google.android.exoplayer.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer.util.PlayerControl;
-
-import android.media.MediaCodec.CryptoException;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.Surface;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * A wrapper around {@link ExoPlayer} that provides a higher level interface. It can be prepared
@@ -181,7 +182,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
 
   private Surface surface;
   private InternalRendererBuilderCallback builderCallback;
-  private TrackRenderer videoRenderer;
+  protected TrackRenderer videoRenderer;
   private Format videoFormat;
   private int videoTrackToRestore;
 
@@ -304,7 +305,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
     rendererBuilder.buildRenderers(this, builderCallback);
   }
 
-  /* package */ void onRenderers(String[][] trackNames,
+  protected void onRenderers(String[][] trackNames,
       MultiTrackChunkSource[] multiTrackSources, TrackRenderer[] renderers) {
     builderCallback = null;
     // Normalize the results.
@@ -402,7 +403,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
     return player.getPlaybackLooper();
   }
 
-  /* package */ Handler getMainHandler() {
+  public Handler getMainHandler() {
     return mainHandler;
   }
 
@@ -510,7 +511,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
     processText(text);
   }
 
-  /* package */ MetadataTrackRenderer.MetadataRenderer<Map<String, Object>>
+  public MetadataTrackRenderer.MetadataRenderer<Map<String, Object>>
       getId3MetadataRenderer() {
     return new MetadataTrackRenderer.MetadataRenderer<Map<String, Object>>() {
       @Override
