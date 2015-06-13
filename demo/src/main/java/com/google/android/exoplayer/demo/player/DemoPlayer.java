@@ -171,7 +171,7 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
   private static final int RENDERER_BUILDING_STATE_BUILT = 3;
 
   private final RendererBuilder rendererBuilder;
-  private final ExoPlayer player;
+  protected final ExoPlayer player;
   private final PlayerControl playerControl;
   private final Handler mainHandler;
   private final CopyOnWriteArrayList<Listener> listeners;
